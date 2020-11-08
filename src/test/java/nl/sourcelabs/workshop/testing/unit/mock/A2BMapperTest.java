@@ -4,6 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.lang.reflect.Proxy;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -21,6 +23,7 @@ public class A2BMapperTest {
 
     @Test
     public void given_anA_when_mappedToB_thenExpect_allFieldsMappedCorrectly() {
+
         final A a = new A();
         final C c = new C();
 

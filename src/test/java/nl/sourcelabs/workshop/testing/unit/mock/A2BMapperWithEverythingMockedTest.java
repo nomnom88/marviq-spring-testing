@@ -1,6 +1,7 @@
 package nl.sourcelabs.workshop.testing.unit.mock;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
