@@ -5,10 +5,11 @@
 
 If we look in our Captor package we can see our Service uses a Client instance as a dependency.
 
-If we want to know the value passed to it we can simply use a Mock or a Spy and an argument Captor.
+If we want to know the value passed to it we can simply use a Mock/Spy and an argument Captor.
 
 In our case we want to capture the _Request_ given
 to the client so that we can make assertions on its state.
+
 ```java
 public void sendRequest(final String message) {
 
@@ -33,7 +34,8 @@ with
 
 ```
 Our captor is like a little holder that can retroactively capture arguments passed to mocks and spies.
-Since our Client is a Mock we can also do this.
+
+Since our Client is a Mock we can also make use of this..
 
 Replace
 
@@ -44,7 +46,7 @@ With:
 ```java
  verify(client).sendRequest(requestArgumentCaptor.capture());
 ```
-After this call we can get access to the parameter that was passed to the mock and make assertions.
+After this call we can get access to the parameter that was passed to the mock and make assertions. 
 
 Add the following:
 
@@ -61,4 +63,10 @@ Add the following:
         assertThatCode(() -> DateTimeFormatter.ISO_DATE.parse(headerWithoutPrefix)).doesNotThrowAnyException();
 ```
 
-Now we can check that the Request instance being sent to Client has been correctly created.
+Now we can check that the Request instance sent to Client has been correctly created.
+
+It is also possible to capture the parameters passed to a particular method when that method has been called multiple times.
+
+```java
+        final List<Request> sentRequests = requestArgumentCaptor.getAllValues();
+```

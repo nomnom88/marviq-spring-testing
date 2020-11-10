@@ -29,9 +29,9 @@ with:
     }
 ```
 Notice, we are making a real instance of MathUtil by calling the constructor.
-We are then passing that instance to Mockito which wraps it in a Spy layer and gives 
+We are then passing that instance to Mockito which wraps it in a Spy (Proxy) layer and gives 
 it back to us.
-Finally we inject that spy into our real instance of Service through its constructor.
+Finally, we inject that spy into our real instance of Service through its constructor.
 
 Run (or preferably debug and step-through) the test.
 
@@ -52,7 +52,6 @@ And add
 to our SUT. Yeah it says Inject**MOCKS** and we're inject a spy;
 
 Re-run the test.
-
 
 ### Spies are partial mocks
 Spies will call the real method unless told otherwise.
@@ -78,4 +77,4 @@ mathUtil.doVeryVeryComplicatedCalculation(a, b)
 ```
 Is called in that code and that's not my intention, I only want to stub behaviour and not run it.
 
-Finally run the test and see how we're no longer getting 735 back but 2.
+Finally, run the test and see how we're no longer getting 735 back but 2.
