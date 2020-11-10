@@ -1,4 +1,4 @@
-package nl.sourcelabs.workshop.testing;
+package nl.sourcelabs.workshop.testing.app;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
