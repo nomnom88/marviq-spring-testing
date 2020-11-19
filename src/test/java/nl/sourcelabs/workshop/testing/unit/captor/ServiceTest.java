@@ -20,7 +20,7 @@ public class ServiceTest {
     @Mock
     private Client client;
 
-    //CAPTOR
+    final ArgumentCaptor<Request> requestArgumentCaptor = ArgumentCaptor.forClass(Request.class);
 
     @InjectMocks
     private Service sut;
@@ -33,7 +33,18 @@ public class ServiceTest {
 
         sut.sendRequest(message);
 
-        // CAPTURE AND ASSERTIONS
+        verify(client).sendRequest(requestArgumentCaptor.capture());
+
+        final Request sentRequest = requestArgumentCaptor.getValue();
+
+        assertThat(sentRequest).isNotNull();
+        assertThat(sentRequest.getMessage()).isEqualTo(message);
+        assertThat(sentRequest.getHeader()).startsWith(expectedPrefix);
+
+        final String headerWithoutPrefix = sentRequest.getHeader()
+                .replace(expectedPrefix, "");
+
+        assertThatCode(() -> DateTimeFormatter.ISO_DATE.parse(headerWithoutPrefix)).doesNotThrowAnyException();
 
     }
 
