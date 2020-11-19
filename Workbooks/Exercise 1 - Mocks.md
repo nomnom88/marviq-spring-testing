@@ -5,7 +5,6 @@
 
 ### 1. Open: A2BMapperWithoutExtensionTest
 
-
 ### 2. Initialise our mocks
 
 Our SUT (Subject Under Test) maps As to Bs and it does it in 1 way. There is no permutation in the flow and so we only need to test a single flow.
@@ -43,7 +42,7 @@ Next, let's fill it in:
     }
 ```
 
-Programatically create Mockito mocks by calling Mockito's static mock method. Here we mock our dependency, the CService, so that we can alter it's behave when our SUT interacts with it.
+Programmatically create Mockito mocks by calling Mockito's static mock method. Here we mock our dependency, the CService, so that we can alter its behaviour when our SUT interacts with it.
 ```java
         cService = Mockito.mock(CService.class);
 ```
@@ -54,11 +53,11 @@ I prefer static imports, so most of the time in this workshop you'll see:
         cService = mock(CService.class);
 ```
 
-
+Finally, we inject the dependency into our SUT. Add this code to the @BeforeEach method body:
 ```java
         sut = new A2BMapper(cService);
 ```
-Finally, we inject the dependency into our SUT.
+
 
 ### 3. Create the test method 
 
@@ -100,8 +99,7 @@ public void given_anA_when_mappedToB_thenExpect_allFieldsMappedCorrectly() {
 ```
 And then run the test.
 
-Look at the console and see how before mocking we get the default null but after mocking
-we receive the value we told Mockito to return.
+Look at the console and see how before mocking we get the default null but after mocking we receive the value we told Mockito to return.
 
 Now let's call our test method and assert our expected behaviour.
 
@@ -194,7 +192,7 @@ public A2BMapper(final CService cService) {
         this.cService = cService;
     }
 ```
-and see that we need an CService parameter. 
+and see that we need a CService parameter. 
 Mockito then looks at which Mocks it has created with @Mock.
 We have only 1 mock and it is of type CService.
 
@@ -233,5 +231,7 @@ Here is a hint to get started:
         e.setCallback(???????);
         final CService cService = (CService) e.create(new Class[]{OtherDepedencyWeDontWantToTest.class}, new Object[]{null});
 ```
+
+Google is your friend.
 
 An excellent deep dive into proxy magic and Spring can be found on youtube. Given by Victor Rentea, perhaps the fastest live coder I've ever seen code in person: https://www.youtube.com/watch?v=HbbvyZh3IZo 
