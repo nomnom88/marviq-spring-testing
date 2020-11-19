@@ -4,9 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import java.lang.reflect.Proxy;
-
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -16,12 +13,13 @@ import org.mockito.junit.jupiter.MockitoExtension;
 @ExtendWith(MockitoExtension.class)
 public class A2BMapperTest {
 
+    @Mock
     private CService cService;
 
+    @InjectMocks
     private A2BMapper sut;
 
     @Test
-    @Disabled
     public void given_anA_when_mappedToB_thenExpect_allFieldsMappedCorrectly() {
 
         final A a = new A();
